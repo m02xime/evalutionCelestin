@@ -36,7 +36,7 @@ class HomeController extends AbstractController
         /**
      * @Route("/ville/{nom}", name="ville")
      */
-    public function ville(): Response
+    public function ville(string $nom): Response
     {
         $restaurants = $this->getDoctrine()
         ->getRepository(Restaurant::class)
@@ -44,9 +44,14 @@ class HomeController extends AbstractController
         $proprietaires = $this->getDoctrine()
         ->getRepository(Proprietaire::class)
         ->findAll();
+        $villes = $this->getDoctrine()
+        ->getRepository(Ville::class)
+        ->findAll();
         return $this->render('home/ville.html.twig', [
             "restaurants"=>$restaurants,
-            "proprietaires"=>$proprietaires
+            "proprietaires"=>$proprietaires,
+            "villes"=>$villes,
+            "ville"=>$nom
         ]);
     }
 
@@ -56,9 +61,11 @@ class HomeController extends AbstractController
     public function Restaurant(string $nom): Response
     {
   
-
+        $restaurants = $this->getDoctrine()
+        ->getRepository(Restaurant::class)
+        ->findAll();
         return $this->render('home/restaurant.html.twig', [
-           
+            "restaurants"=>$restaurants,
             "proprietaire"=>$nom
         ]);
     }

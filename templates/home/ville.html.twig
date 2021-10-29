@@ -20,17 +20,20 @@
 	<div class="example-wrapper">
 		<ul class="d-flex flex-row flex-wrap">
 			{% for restaurant in restaurants %}
+            {% if restaurant.Ville.name == ville %}
+
 				<div class="card" style="width: 18rem;">
 					<div class="card-body">
                     <img class="card-img-top" src="{{restaurant.image}}" alt="{{ restaurant.name}}">
 						<h5 class="card-title">{{ restaurant.name}}</h5>
 						<p>proprietaire: {{restaurant.proprietaire.name}} {{restaurant.proprietaire.prenom}}</p>
-						<a class="card link-primary btn btn-primary" href="{{ path("Restaurant", {nom: restaurant.name}) }}">
+						<a class="card link-primary btn btn-primary" href="{{ path("Restaurant", {nom: restaurant.proprietaire.name}) }}">
 							voir
 
 						</a>
 					</div>
 				</div>
+                {% endif %}
 			{% endfor %}
 
 		</ul>

@@ -18,50 +18,21 @@
 	</style>
 
 	<div class="example-wrapper">
-    <h1>les villes</h1>
-		<ul class="d-flex flex-row flex-wrap">
-			{% for ville in villes %}
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">{{ ville.name}}</h5>
-						<p>les restaurants de cette ville</p>
-						<a class="card link-primary btn btn-primary" href="{{ path("ville", {nom: ville.name}) }}">
-							voir
 
-						</a>
-					</div>
-				</div>
-			{% endfor %}
 
-		</ul>
-
-        <h1>les restaurants</h1>
-        <ul class="d-flex flex-row flex-wrap">
-			{% for restaurant in restaurants %}
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-                    <img class="card-img-top" src="{{restaurant.image}}" alt="{{ restaurant.name}}">
-						<h5 class="card-title">{{ restaurant.name}}</h5>
-						<p>proprietaire: {{restaurant.proprietaire.name}} {{restaurant.proprietaire.prenom}}</p>
-						<a class="card link-primary btn btn-primary" href="{{ path("Restaurant", {nom: restaurant.name}) }}">
-							voir
-
-						</a>
-					</div>
-				</div>
-			{% endfor %}
-
-		</ul>
-
-	<h1>les proprietaires</h1>
+		<h1>les restaurants</h1>
 		<ul class="d-flex flex-row flex-wrap">
 			{% for restaurant in restaurants %}
 				<div class="card" style="width: 18rem;">
 					<div class="card-body">
-						<h5 class="card-title">{{restaurant.proprietaire.name}} {{restaurant.proprietaire.prenom}}</h5>
-                        <p>voir le restaurant</p>
-						<a class="card link-primary btn btn-primary" href="{{ path("Restaurant", {nom: restaurant.name}) }}">
-							voir
+						<img class="card-img-top" src="{{restaurant.image}}" alt="{{ restaurant.name}}">
+						<h5 class="card-title">resto :{{ restaurant.name}}</h5>
+						<a class="card link-primary btn btn-primary" href="{{ path("Restaurant", {nom: restaurant.proprietaire.name}) }}">
+							proprietaire : {{restaurant.proprietaire.name}}
+
+						</a>
+						<a class="card link-primary btn btn-primary" href="{{ path("ville", {nom: restaurant.Ville.name}) }}">
+							ville :{{restaurant.Ville.name}}
 
 						</a>
 					</div>
@@ -69,5 +40,7 @@
 			{% endfor %}
 
 		</ul>
+	</div>
+
 
 {% endblock %}
