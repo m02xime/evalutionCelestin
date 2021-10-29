@@ -19,16 +19,9 @@ class HomeController extends AbstractController
         $restaurants = $this->getDoctrine()
         ->getRepository(Restaurant::class)
         ->findAll();
-        $proprietaires = $this->getDoctrine()
-        ->getRepository(Proprietaire::class)
-        ->findAll();
-        $villes = $this->getDoctrine()
-            ->getRepository(Ville::class)
-            ->findAll();
+
         return $this->render('home/index.html.twig', [
-            "villes"=>$villes,
             "restaurants"=>$restaurants,
-            "proprietaires"=>$proprietaires
         ]);
     }
 
@@ -41,16 +34,9 @@ class HomeController extends AbstractController
         $restaurants = $this->getDoctrine()
         ->getRepository(Restaurant::class)
         ->findAll();
-        $proprietaires = $this->getDoctrine()
-        ->getRepository(Proprietaire::class)
-        ->findAll();
-        $villes = $this->getDoctrine()
-        ->getRepository(Ville::class)
-        ->findAll();
+
         return $this->render('home/ville.html.twig', [
             "restaurants"=>$restaurants,
-            "proprietaires"=>$proprietaires,
-            "villes"=>$villes,
             "ville"=>$nom
         ]);
     }
